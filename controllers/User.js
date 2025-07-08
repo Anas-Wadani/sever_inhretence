@@ -10,7 +10,7 @@ const nodemailer = require('nodemailer');
 
 const verificationCodes = {}; // In-memory store for verification codes
 // Environment variables for JWT
-const JWT_SECRET = process.env.JWT_SECRET || ''; // Ensure you have a secure key
+const JWT_SECRET = process.env.JWT_SECRET || 'rh3ieurhdyue87683'; // Ensure you have a secure key
 const JWT_EXPIRES_IN = '90d'; // Token expiration time
 
 // Configure multer for file storage
@@ -44,6 +44,7 @@ exports.createUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
     try {
+        console.log(req.body)
         const { email, password } = req.body;
         const user = await User.findOne({ email });
         if (!user || !(await bcrypt.compare(password, user.password))) {
